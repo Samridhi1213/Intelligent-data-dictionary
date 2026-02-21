@@ -19,11 +19,15 @@ def get_metadata_service(connector = Depends(get_postgres_connector)):
 def get_quality_service(connector = Depends(get_postgres_connector)):
     return QualityService(connector)
 
+# Global service instances
+_ai_service = AIService()
+_export_service = ExportService()
+
 def get_ai_service():
-    return AIService()
+    return _ai_service
 
 def get_export_service():
-    return ExportService()
+    return _export_service
 
 @router.get("/metadata")
 async def get_metadata(service: MetadataService = Depends(get_metadata_service)):

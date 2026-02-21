@@ -17,8 +17,11 @@ def get_postgres_connector():
 def get_metadata_service(connector = Depends(get_postgres_connector)):
     return MetadataService(connector)
 
+# Global service instances
+_ai_service = AIService()
+
 def get_ai_service():
-    return AIService()
+    return _ai_service
 
 @router.post("/chat")
 async def chat(

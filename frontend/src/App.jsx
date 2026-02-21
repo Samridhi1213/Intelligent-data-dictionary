@@ -29,16 +29,27 @@ function App() {
   return (
     <Router>
       <div className="sidebar">
-        <h1 className="gradient-text" style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>DataAgent AI</h1>
+        <div style={{ display: 'flex', justifyContent: 'center', width: '100%', marginBottom: '2rem' }}>
+          <h1 className="gradient-text" style={{
+            fontSize: '1.75rem',
+            fontWeight: '900',
+            textAlign: 'center',
+            display: 'inline-block',
+            borderBottom: '3px solid var(--primary-color)',
+            paddingBottom: '4px',
+            textTransform: 'uppercase',
+            letterSpacing: '2px'
+          }}>Data Agent AI</h1>
+        </div>
 
-        <nav style={{ display: 'flex', flex_direction: 'column', gap: '0.5rem' }}>
-          <Link to="/" className="btn" style={{ color: 'inherit', text_decoration: 'none' }}>
+        <nav style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+          <Link to="/" className="btn" style={{ color: 'inherit', textDecoration: 'none' }}>
             <LayoutDashboard size={20} /> Dashboard
           </Link>
-          <Link to="/explorer" className="btn" style={{ color: 'inherit', text_decoration: 'none' }}>
+          <Link to="/explorer" className="btn" style={{ color: 'inherit', textDecoration: 'none' }}>
             <TableIcon size={20} /> Table Explorer
           </Link>
-          <Link to="/chat" className="btn" style={{ color: 'inherit', text_decoration: 'none' }}>
+          <Link to="/chat" className="btn" style={{ color: 'inherit', textDecoration: 'none' }}>
             <MessageSquare size={20} /> AI Chat
           </Link>
         </nav>

@@ -45,18 +45,22 @@ const TableExplorer = ({ metadata }) => {
     };
 
     return (
-        <div style={{ display: 'grid', gridTemplateColumns: '300px 1fr', gap: '2rem' }}>
-            <div className="glass-card">
-                <h3 style={{ marginBottom: '1rem' }}>Tables</h3>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'minmax(250px, 300px) 1fr', gap: '2rem', height: '100%' }}>
+            <div className="glass-card" style={{ height: 'fit-content', position: 'sticky', top: '2rem' }}>
+                <h3 style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <Search size={20} className="gradient-text" style={{ opacity: 1, color: 'var(--primary-color)' }} />
+                    Datasets
+                </h3>
+                <div className="table-list">
                     {Object.keys(metadata).map(name => (
                         <button
                             key={name}
                             onClick={() => handleTableSelect(name)}
-                            className={`btn ${selectedTable === name ? 'btn-primary' : ''}`}
-                            style={{ justifyContent: 'space-between', width: '100%', background: selectedTable === name ? '' : 'rgba(255,255,255,0.05)' }}
+                            className={`btn ${selectedTable === name ? 'btn-primary' : 'btn-secondary'}`}
+                            style={{ justifyContent: 'space-between', width: '100%' }}
                         >
-                            {name} <ChevronRight size={16} />
+                            <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{name}</span>
+                            <ChevronRight size={16} style={{ flexShrink: 0, opacity: selectedTable === name ? 1 : 0.5 }} />
                         </button>
                     ))}
                 </div>

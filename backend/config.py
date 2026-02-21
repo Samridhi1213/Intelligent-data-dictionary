@@ -14,7 +14,13 @@ class Settings(BaseSettings):
     DB_NAME: str = "olist_db"
 
     # Gemini Settings
-    GEMINI_API_KEY: str = ""
+    GEMINI_API_KEYS: str = ""
+    
+    @property
+    def GEMINI_API_KEY(self) -> str:
+        # Fallback for single key usage if multiple keys are not provided
+        keys = self.GEMINI_API_KEYS.split(",")
+        return keys[0] if keys else ""
 
     # Export Settings
     EXPORT_PATH: str = "./exports"
