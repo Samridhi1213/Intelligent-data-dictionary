@@ -1,0 +1,447 @@
+{
+    "geolocation": {
+        "columns": [
+            {
+                "name": "geolocation_zip_code_prefix",
+                "type": "INTEGER",
+                "nullable": true,
+                "default": null
+            },
+            {
+                "name": "geolocation_lat",
+                "type": "DOUBLE PRECISION",
+                "nullable": true,
+                "default": null
+            },
+            {
+                "name": "geolocation_lng",
+                "type": "DOUBLE PRECISION",
+                "nullable": true,
+                "default": null
+            },
+            {
+                "name": "geolocation_city",
+                "type": "VARCHAR",
+                "nullable": true,
+                "default": null
+            },
+            {
+                "name": "geolocation_state",
+                "type": "VARCHAR",
+                "nullable": true,
+                "default": null
+            }
+        ],
+        "primary_keys": [],
+        "foreign_keys": [],
+        "indexes": []
+    },
+    "category_translation": {
+        "columns": [
+            {
+                "name": "product_category_name",
+                "type": "VARCHAR",
+                "nullable": false,
+                "default": null
+            },
+            {
+                "name": "product_category_name_english",
+                "type": "VARCHAR",
+                "nullable": true,
+                "default": null
+            }
+        ],
+        "primary_keys": [
+            "product_category_name"
+        ],
+        "foreign_keys": [],
+        "indexes": []
+    },
+    "customers": {
+        "columns": [
+            {
+                "name": "customer_id",
+                "type": "VARCHAR",
+                "nullable": false,
+                "default": null
+            },
+            {
+                "name": "customer_unique_id",
+                "type": "VARCHAR",
+                "nullable": true,
+                "default": null
+            },
+            {
+                "name": "customer_zip_code_prefix",
+                "type": "INTEGER",
+                "nullable": true,
+                "default": null
+            },
+            {
+                "name": "customer_city",
+                "type": "VARCHAR",
+                "nullable": true,
+                "default": null
+            },
+            {
+                "name": "customer_state",
+                "type": "VARCHAR",
+                "nullable": true,
+                "default": null
+            }
+        ],
+        "primary_keys": [
+            "customer_id"
+        ],
+        "foreign_keys": [],
+        "indexes": []
+    },
+    "orders": {
+        "columns": [
+            {
+                "name": "order_id",
+                "type": "VARCHAR",
+                "nullable": false,
+                "default": null
+            },
+            {
+                "name": "customer_id",
+                "type": "VARCHAR",
+                "nullable": true,
+                "default": null
+            },
+            {
+                "name": "order_status",
+                "type": "VARCHAR",
+                "nullable": true,
+                "default": null
+            },
+            {
+                "name": "order_purchase_timestamp",
+                "type": "TIMESTAMP",
+                "nullable": true,
+                "default": null
+            },
+            {
+                "name": "order_approved_at",
+                "type": "TIMESTAMP",
+                "nullable": true,
+                "default": null
+            },
+            {
+                "name": "order_delivered_carrier_date",
+                "type": "TIMESTAMP",
+                "nullable": true,
+                "default": null
+            },
+            {
+                "name": "order_delivered_customer_date",
+                "type": "TIMESTAMP",
+                "nullable": true,
+                "default": null
+            },
+            {
+                "name": "order_estimated_delivery_date",
+                "type": "TIMESTAMP",
+                "nullable": true,
+                "default": null
+            }
+        ],
+        "primary_keys": [
+            "order_id"
+        ],
+        "foreign_keys": [
+            {
+                "referred_table": "customers",
+                "referred_columns": [
+                    "customer_id"
+                ],
+                "constrained_columns": [
+                    "customer_id"
+                ]
+            }
+        ],
+        "indexes": []
+    },
+    "order_items": {
+        "columns": [
+            {
+                "name": "order_id",
+                "type": "VARCHAR",
+                "nullable": true,
+                "default": null
+            },
+            {
+                "name": "order_item_id",
+                "type": "INTEGER",
+                "nullable": true,
+                "default": null
+            },
+            {
+                "name": "product_id",
+                "type": "VARCHAR",
+                "nullable": true,
+                "default": null
+            },
+            {
+                "name": "seller_id",
+                "type": "VARCHAR",
+                "nullable": true,
+                "default": null
+            },
+            {
+                "name": "shipping_limit_date",
+                "type": "TIMESTAMP",
+                "nullable": true,
+                "default": null
+            },
+            {
+                "name": "price",
+                "type": "DOUBLE PRECISION",
+                "nullable": true,
+                "default": null
+            },
+            {
+                "name": "freight_value",
+                "type": "DOUBLE PRECISION",
+                "nullable": true,
+                "default": null
+            }
+        ],
+        "primary_keys": [],
+        "foreign_keys": [
+            {
+                "referred_table": "orders",
+                "referred_columns": [
+                    "order_id"
+                ],
+                "constrained_columns": [
+                    "order_id"
+                ]
+            },
+            {
+                "referred_table": "products",
+                "referred_columns": [
+                    "product_id"
+                ],
+                "constrained_columns": [
+                    "product_id"
+                ]
+            },
+            {
+                "referred_table": "sellers",
+                "referred_columns": [
+                    "seller_id"
+                ],
+                "constrained_columns": [
+                    "seller_id"
+                ]
+            }
+        ],
+        "indexes": []
+    },
+    "products": {
+        "columns": [
+            {
+                "name": "product_id",
+                "type": "VARCHAR",
+                "nullable": false,
+                "default": null
+            },
+            {
+                "name": "product_category_name",
+                "type": "VARCHAR",
+                "nullable": true,
+                "default": null
+            },
+            {
+                "name": "product_name_lenght",
+                "type": "DOUBLE PRECISION",
+                "nullable": true,
+                "default": null
+            },
+            {
+                "name": "product_description_lenght",
+                "type": "DOUBLE PRECISION",
+                "nullable": true,
+                "default": null
+            },
+            {
+                "name": "product_photos_qty",
+                "type": "DOUBLE PRECISION",
+                "nullable": true,
+                "default": null
+            },
+            {
+                "name": "product_weight_g",
+                "type": "DOUBLE PRECISION",
+                "nullable": true,
+                "default": null
+            },
+            {
+                "name": "product_length_cm",
+                "type": "DOUBLE PRECISION",
+                "nullable": true,
+                "default": null
+            },
+            {
+                "name": "product_height_cm",
+                "type": "DOUBLE PRECISION",
+                "nullable": true,
+                "default": null
+            },
+            {
+                "name": "product_width_cm",
+                "type": "DOUBLE PRECISION",
+                "nullable": true,
+                "default": null
+            }
+        ],
+        "primary_keys": [
+            "product_id"
+        ],
+        "foreign_keys": [],
+        "indexes": []
+    },
+    "sellers": {
+        "columns": [
+            {
+                "name": "seller_id",
+                "type": "VARCHAR",
+                "nullable": false,
+                "default": null
+            },
+            {
+                "name": "seller_zip_code_prefix",
+                "type": "INTEGER",
+                "nullable": true,
+                "default": null
+            },
+            {
+                "name": "seller_city",
+                "type": "VARCHAR",
+                "nullable": true,
+                "default": null
+            },
+            {
+                "name": "seller_state",
+                "type": "VARCHAR",
+                "nullable": true,
+                "default": null
+            }
+        ],
+        "primary_keys": [
+            "seller_id"
+        ],
+        "foreign_keys": [],
+        "indexes": []
+    },
+    "order_payments": {
+        "columns": [
+            {
+                "name": "order_id",
+                "type": "VARCHAR",
+                "nullable": true,
+                "default": null
+            },
+            {
+                "name": "payment_sequential",
+                "type": "INTEGER",
+                "nullable": true,
+                "default": null
+            },
+            {
+                "name": "payment_type",
+                "type": "VARCHAR",
+                "nullable": true,
+                "default": null
+            },
+            {
+                "name": "payment_installments",
+                "type": "INTEGER",
+                "nullable": true,
+                "default": null
+            },
+            {
+                "name": "payment_value",
+                "type": "DOUBLE PRECISION",
+                "nullable": true,
+                "default": null
+            }
+        ],
+        "primary_keys": [],
+        "foreign_keys": [
+            {
+                "referred_table": "orders",
+                "referred_columns": [
+                    "order_id"
+                ],
+                "constrained_columns": [
+                    "order_id"
+                ]
+            }
+        ],
+        "indexes": []
+    },
+    "order_reviews": {
+        "columns": [
+            {
+                "name": "review_id",
+                "type": "VARCHAR",
+                "nullable": false,
+                "default": null
+            },
+            {
+                "name": "order_id",
+                "type": "VARCHAR",
+                "nullable": true,
+                "default": null
+            },
+            {
+                "name": "review_score",
+                "type": "INTEGER",
+                "nullable": true,
+                "default": null
+            },
+            {
+                "name": "review_comment_title",
+                "type": "VARCHAR",
+                "nullable": true,
+                "default": null
+            },
+            {
+                "name": "review_comment_message",
+                "type": "VARCHAR",
+                "nullable": true,
+                "default": null
+            },
+            {
+                "name": "review_creation_date",
+                "type": "TIMESTAMP",
+                "nullable": true,
+                "default": null
+            },
+            {
+                "name": "review_answer_timestamp",
+                "type": "TIMESTAMP",
+                "nullable": true,
+                "default": null
+            }
+        ],
+        "primary_keys": [
+            "review_id"
+        ],
+        "foreign_keys": [
+            {
+                "referred_table": "orders",
+                "referred_columns": [
+                    "order_id"
+                ],
+                "constrained_columns": [
+                    "order_id"
+                ]
+            }
+        ],
+        "indexes": []
+    }
+}
